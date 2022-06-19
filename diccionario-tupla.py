@@ -1,16 +1,13 @@
-from turtle import clear
 
 
-a = ['Bulbasaur']
-b = tuple(['Grass;Poison'])
-c= tuple(b)
-diccionario = {}
+diccionario = {'Bulbasaur': 'Grass;Poison', 'Leafeon': 'Grass;', 'Kabuto': 'Rock;Water', 'Ivysaur': 'Grass;Poison', 'Venusaur': 'Grass;Poison', 'Charmander': 'Fire;'}
+tupla_tipos = []
+def tipos(nombre_pokemon):
+    for k,v in diccionario.items():
+        if k == nombre_pokemon:
+            tipos_= v
+        return(k, v)
 
-diccionario = dict(zip(a,c))
-print(b)
 
-for v in diccionario.values():
-    print(type(v))
-  
 
-print(diccionario)
+print(type(tipos("Bulbasaur")))

@@ -30,8 +30,9 @@ for llave in tipos_de_pokemon:
         elif llave == separador[1]:
             pokemon_por_tipo[llave][1].append(aux[0])
 
-# print(pokemon_por_tipo)
-print(pokemon_por_tipo.keys())
+
+print(desc_pok_list)
+
 
 
 

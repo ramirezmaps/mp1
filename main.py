@@ -6,16 +6,33 @@ def def_value():
 ## Definición funciones ##
 
 def orden_segun(tipo, criterio):
+    if criterio == "HP":
+        for tipo_ in tipos_de_pokemon:
+            if tipo_ == tipo:
+                pass
+        
+    if criterio == "Defense":
+        pass
+    if criterio == "Attack":
+        pass  
     pass
 
 def estadisticas(tipo, criterio):
+    if criterio == 'HP':
+        for k,v in pokemon_por_tipo.items():
+            if k == tipo:
+                return(v)
     pass
-
 def tipo_segun_nombre(nombre):
-    pass
+    for k,v in info_pokemon.items():
+        if pokemon_por_tipo[k] == nombre:
+            tipos_= v
+        return(k, v)
+    
+
 
 ## Lectura archivo y definicion estructuras ##
-archivo = open("pokemon.csv",encoding="UTF-8")
+archivo = open("pokemon.csv","r",encoding="UTF-8")
 next(archivo)
 lineas = archivo.readlines()
 
@@ -25,6 +42,19 @@ info_pokemon_list = []
 id_list = []
 info_pokemon = {}
 pokemon_por_tipo = {}
+
+pokemon_para_HP = {}
+pokemon_para_ataque = {}
+pokemon_para_defensa = {}
+
+suma_HP = 0
+cont_HP = 0
+
+suma_ataque = 0
+cont_ataque = 0
+
+suma_defensa = 0
+cont_defensa =0
 
 for linea in lineas:
     linea = linea.rstrip("\n")
@@ -50,7 +80,62 @@ for llave in tipos_de_pokemon:
         elif llave == separador[1]:
             pokemon_por_tipo[llave][1].append(aux[0])
 
+for llave in tipos_de_pokemon:
+    pokemon_para_HP[llave] = [[]]
+    for valor in lineas:
+        aux = valor.split(",")
+        separador = aux[2].split(";")
+        if llave == separador[0]:
+            pokemon_para_HP[llave][0].append(aux[3])
+
+for llave in tipos_de_pokemon:
+    pokemon_para_ataque[llave] = [[]]
+    for valor in lineas:
+        aux = valor.split(",")
+        separador = aux[2].split(";")
+        if llave == separador[0]:
+            pokemon_para_ataque[llave][0].append(aux[4])
+
+for llave in tipos_de_pokemon:
+    pokemon_para_defensa[llave] = [[]]
+    for valor in lineas:
+        aux = valor.split(",")
+        separador = aux[2].split(";")
+        if llave == separador[0]:
+            pokemon_para_defensa[llave][0].append(aux[5])
+
 info_pokemon = dict(zip(id_list,info_pokemon_list))
+
+for k,v in pokemon_para_HP.items():
+    for numeros_v in v:
+        for numero in numeros_v:
+            r = (int(numero))
+            suma_HP = suma_HP + r
+            cont_HP = cont_HP + 1
+
+
+promedio_HP = suma_HP/cont_HP
+
+for k,v in pokemon_para_ataque.items():
+    for numeros_v in v:
+        for numero in numeros_v:
+            r = (int(numero))
+            suma_ataque = suma_ataque + r
+            cont_ataque = cont_ataque + 1
+
+promedio_ataque = suma_ataque/cont_ataque
+
+for k,v in pokemon_para_defensa.items():
+    for numeros_v in v:
+        for numero in numeros_v:
+            r = (int(numero))
+            suma_defensa = suma_defensa + r
+            cont_defensa = cont_defensa + 1
+
+promedio_defensa = suma_defensa/cont_defensa
+
+
+
 
 ## Menu flujo principal ##
 
@@ -137,4 +222,4 @@ while continuar:
         continuar = False
 
     else:
-        print(accion
+        print(accion)

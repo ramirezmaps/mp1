@@ -24,7 +24,7 @@ for llave in nombre_tipo:
             dict_nombre_tipo[llave][1].append(x_aux[0])
 
 
-print(dict_nombre_tipo)
+print(nom)
 
 
 
